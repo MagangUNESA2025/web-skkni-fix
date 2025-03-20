@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body>
+        <div class="navbar">
+            <div class="logo">
+                <img src="foto/logo skk fix.png" alt="Logo SKKNI">
+                <h1 class="skkni">SKK</h1>
+
+            </div>
+            <ul class="nav-links">
+                <li><a href="beranda.html">Beranda</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Organisasi</a>
+                    <ul class="dropdown-content">
+                        <li><a href="Tentang Kami.html">Tentang Kami</a></li>
+                        <li><a href="Struktur Organisasi.html">Struktur Organisasi</a></li>
+                        <li><a href="Daftar LSP.html">Daftar LSP</a></li>
+                        <li><a href="Daftar Lembaga_Diklat.html">Daftar Lembaga Diklat</a></li>
+                        <li><a href="Daftar Asosiasi.html">Daftar Asosiasi</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Regulasi</a>
+                    <ul class="dropdown-content">
+                        <li><a href="regulasi.html">Regulasi</a></li>
+                        <li><a href="regulasi eksternal.html">Regulasi Eksternal</a></li>
+                    </ul>
+                </li>
+                <li><a href="Agenda.html">Agenda</a></li>
+                <li><a href="Layanan.html">Layanan</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">Media</a>
+                    <ul class="dropdown-content">
+                        <li><a href="Galeri.html">Galeri</a></li>
+                        <li><a href="Berita.html">Berita</a></li>
+                    </ul>
+                </li>
+                <li><a href="hubungi kami.html">Hubungi Kami</a></li>
+            </ul>
+        </li>
+    
+        
+        </div>
+    </body> 
+
+    <header class="header-banner" id="home">
+        <h2>DAFTAR LEMBAGA DIKLAT</h2>
+    </header>
+
+    <section class="filter-section">
+        <select id="filter-kategori">
+            <option value="">-- Semua Kategori --</option>
+            <option value="P1">P1</option>
+            <option value="P2">P2</option>
+            <option value="P3">P3</option>
+       
+        </select>
+        <input type="text" id="filter-judul" placeholder="Cari">
+        <button class="search-button" onclick="filterData()">Cari</button>
+    </section>
+
+   
+    
+    
+
+    <title>Tambah Data</title>
+    <script>
+        function tampilkanForm() {
+            document.getElementById("dataForm").style.display = "block";
+        }
+
+        function tambahData() {
+            let namaLSP = document.getElementById("namaLSP").value;
+            let dataAsesor = document.getElementById("dataAsesor").value;
+            let dataTUK = document.getElementById("dataTUK").value;
+            let dataSkema = document.getElementById("dataSkema").value;
+
+            if (namaLSP === "" || dataAsesor === "" || dataTUK === "" || dataSkema === "") {
+                alert("Semua field harus diisi!");
+                return;
+            }
+
+            let table = document.getElementById("dataTable").getElementsByTagName('tbody')[0];
+            let newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>${namaLSP}</td>
+                <td>${dataAsesor}</td>
+                <td>${dataTUK}</td>
+                <td>${dataSkema}</td>
+                <td><button onclick="hapusData(this)">Hapus</button></td>
+            `;
+
+            // Reset form
+            document.getElementById("namaLSP").value = "";
+            document.getElementById("dataAsesor").value = "";
+            document.getElementById("dataTUK").value = "";
+            document.getElementById("dataSkema").value = "";
+            document.getElementById("dataForm").style.display = "none";
+        }
+
+        function hapusData(button) {
+            let row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</head>
+<body>
+    <h2>Data LSP</h2>
+    <button onclick="tampilkanForm()">Tambah Data</button>
+
+    <div id="dataForm" style="display:none;">
+        <h3>Tambah Data</h3>
+        <label>Nama LSP:</label> <input type="text" id="namaLSP"><br>
+        <label>Data Asesor:</label> <input type="text" id="dataAsesor"><br>
+        <label>Data TUK:</label> <input type="text" id="dataTUK"><br>
+        <label>Data Skema:</label> <input type="text" id="dataSkema"><br>
+        <button onclick="tambahData()">Simpan</button>
+    </div>
+
+    <table id="dataTable" border="1">
+        <thead>
+            <tr>
+                <th>Nama LSP</th>
+                <th>Data Asesor</th>
+                <th>Data TUK</th>
+                <th>Data Skema</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data akan ditambahkan di sini -->
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>
